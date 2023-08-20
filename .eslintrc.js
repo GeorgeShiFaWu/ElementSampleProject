@@ -166,7 +166,7 @@ module.exports = {
       'avoidEscape': true,
       'allowTemplateLiterals': true
     }],
-    'semi': [2, 'never'],
+    'semi': ['error', 'always'],
     'semi-spacing': [2, {
       'before': false,
       'after': true

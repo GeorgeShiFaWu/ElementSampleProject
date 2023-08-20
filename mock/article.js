@@ -1,10 +1,10 @@
-const Mock = require('mockjs')
+const Mock = require('mockjs');
 
-const List = []
-const count = 100
+const List = [];
+const count = 100;
 
-const baseContent = '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
-const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3'
+const baseContent = '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>';
+const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3';
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
@@ -24,7 +24,7 @@ for (let i = 0; i < count; i++) {
     pageviews: '@integer(300, 5000)',
     image_uri,
     platforms: ['a-platform']
-  }))
+  }));
 }
 
 module.exports = [
@@ -32,20 +32,20 @@ module.exports = [
     url: '/vue-element-admin/article/list',
     type: 'get',
     response: config => {
-      const { importance, type, title, page = 1, limit = 20, sort } = config.query
+      const { importance, type, title, page = 1, limit = 20, sort } = config.query;
 
       let mockList = List.filter(item => {
-        if (importance && item.importance !== +importance) return false
-        if (type && item.type !== type) return false
-        if (title && item.title.indexOf(title) < 0) return false
-        return true
-      })
+        if (importance && item.importance !== +importance) return false;
+        if (type && item.type !== type) return false;
+        if (title && item.title.indexOf(title) < 0) return false;
+        return true;
+      });
 
       if (sort === '-id') {
-        mockList = mockList.reverse()
+        mockList = mockList.reverse();
       }
 
-      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1));
 
       return {
         code: 20000,
@@ -53,7 +53,7 @@ module.exports = [
           total: mockList.length,
           items: pageList
         }
-      }
+      };
     }
   },
 
@@ -61,13 +61,13 @@ module.exports = [
     url: '/vue-element-admin/article/detail',
     type: 'get',
     response: config => {
-      const { id } = config.query
+      const { id } = config.query;
       for (const article of List) {
         if (article.id === +id) {
           return {
             code: 20000,
             data: article
-          }
+          };
         }
       }
     }
@@ -87,7 +87,7 @@ module.exports = [
             { key: 'android', pv: 1024 }
           ]
         }
-      }
+      };
     }
   },
 
@@ -98,7 +98,7 @@ module.exports = [
       return {
         code: 20000,
         data: 'success'
-      }
+      };
     }
   },
 
@@ -109,8 +109,8 @@ module.exports = [
       return {
         code: 20000,
         data: 'success'
-      }
+      };
     }
   }
-]
+];
 

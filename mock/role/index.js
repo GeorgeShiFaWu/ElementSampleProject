@@ -1,8 +1,8 @@
-const Mock = require('mockjs')
-const { deepClone } = require('../utils')
-const { asyncRoutes, constantRoutes } = require('./routes.js')
+const Mock = require('mockjs');
+const { deepClone } = require('../utils');
+const { asyncRoutes, constantRoutes } = require('./routes.js');
 
-const routes = deepClone([...constantRoutes, ...asyncRoutes])
+const routes = deepClone([...constantRoutes, ...asyncRoutes]);
 
 const roles = [
   {
@@ -33,7 +33,7 @@ const roles = [
       ]
     }]
   }
-]
+];
 
 module.exports = [
   // mock get all routes form server
@@ -44,7 +44,7 @@ module.exports = [
       return {
         code: 20000,
         data: routes
-      }
+      };
     }
   },
 
@@ -56,7 +56,7 @@ module.exports = [
       return {
         code: 20000,
         data: roles
-      }
+      };
     }
   },
 
@@ -95,4 +95,4 @@ module.exports = [
       }
     }
   }
-]
+];

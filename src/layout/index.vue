@@ -5,7 +5,8 @@
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-        <tags-view v-if="needTagsView" />
+        <!-- 隐藏 tagView -->
+        <!--<tags-view v-if="needTagsView" />-->
       </div>
       <app-main />
       <right-panel v-if="showSettings">
@@ -16,10 +17,10 @@
 </template>
 
 <script>
-import RightPanel from '@/components/RightPanel'
-import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
-import { mapState } from 'vuex'
+import RightPanel from '@/components/RightPanel';
+import { AppMain, Navbar, Settings, Sidebar } from './components';
+import ResizeMixin from './mixin/ResizeHandler';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Layout',
@@ -28,8 +29,7 @@ export default {
     Navbar,
     RightPanel,
     Settings,
-    Sidebar,
-    TagsView
+    Sidebar
   },
   mixins: [ResizeMixin],
   computed: {
@@ -46,15 +46,15 @@ export default {
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
-      }
+      };
     }
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
